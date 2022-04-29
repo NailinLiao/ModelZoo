@@ -1,0 +1,26 @@
+<annotation>
+	<folder>im_aug</folder>
+	<filename>ILSVRC2012_test_00000004.jpg</filename>
+	<path>E:\WorkSpace\DataSet\DUTS\DUTS-TR\im_aug\ILSVRC2012_test_00000004.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>400</width>
+		<height>366</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>Dog</name>
+		<pose>Unspecified</pose>
+		<difficult>0</difficult>
+		<truncated>0</truncated>
+		<bndbox>
+			<xmin>135</xmin>
+			<ymin>144</ymin>
+			<xmax>250</xmax>
+			<ymax>255</ymax>
+		</bndbox>
+	</object>
+</annotation>
