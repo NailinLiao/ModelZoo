@@ -1,5 +1,6 @@
 import json
 import xml.etree.ElementTree as ET
+import numpy as np
 
 
 def swapPositions(list, pos1, pos2):
@@ -65,3 +66,39 @@ class Analysis():
                     'box': box,
                 })
         return ret
+
+    @staticmethod
+    def yolo_3d_tar(txt_file):
+
+        def transition_point(centre, size):
+            centre = list(map(float, centre))
+            size = list(map(float, size))
+            centre = np.array(centre)
+            size = np.array(size) / 2
+
+            A = np.array(centre - size).tolist()
+            B = np.array(centre + size).tolist()
+            A += B
+            return A
+
+            # box[x1, y1, z1, x2, y2, z2]
+
+        # 分别是两对角定点的坐标
+        ret = []
+        file_handle = open(txt_file, mode='r')
+        contents = file_handle.readlines()
+        for line in contents:
+            split_data = str(line).split(' ')
+            box = transition_point(split_data[1:4], split_data[4:7])
+            ret.append({
+                'label': split_data[0],
+                'box': box,
+            })
+        return ret
+
+
+if __name__ == '__main__':
+    txt_file = r'E:\WorkSpace\Evaluate_POJO\Test_data\3d_box\Pre\0000000010.pcd.txt'
+    boxs = Analysis.yolo_3d_tar(txt_file)
+    for box in boxs:
+        print(box)
